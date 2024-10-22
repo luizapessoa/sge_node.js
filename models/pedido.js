@@ -12,23 +12,8 @@ const Pedido = sequelize.define('Pedido', {
         type: DataTypes.DATE,
 
     },
-    clienteId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Cliente,
-            key: 'id',
-
-        },
-    },
     
-})
+});
 
-// pedido pertence a um cliente
-
-Pedido.associate = (models) => {
-    Pedido.belongsTo(models.Cliente, {
-        foreignKey: 'clienteId',
-        as: 'cliente' });
-
-};
+Pedido.belongsTo(Cliente, { foreignKey: 'clienteId' })
 module.exports = Pedido;

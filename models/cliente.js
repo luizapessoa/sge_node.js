@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Pedido = require('./pedidos');
 
 const Cliente = sequelize.define('Cliente', {
     id: {
@@ -18,13 +17,5 @@ const Cliente = sequelize.define('Cliente', {
     },
 });
 
-// o cliente possiui vários produtos
-
-Cliente.associate = (models) => {
-    Cliente.hasMany(models.Pedido, {
-        foreignKey: 'clienteId', 
-        as: 'pedidos'
-    });
-};
 
 module.exports = Cliente;
