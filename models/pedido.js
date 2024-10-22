@@ -30,11 +30,5 @@ Pedido.associate = (models) => {
         foreignKey: 'clienteId',
         as: 'cliente' });
 
-Pedido.belongsToMany(models.Produto, {
-    through: models.PedidoProduto,
-    as: 'produtos',
-    foreignKey: 'pedidoId',
-    otherKey: 'produtoId'
-    });
 };
 module.exports = Pedido;
