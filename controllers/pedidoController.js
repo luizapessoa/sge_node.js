@@ -31,3 +31,4 @@ exports.todosPedidos = async (req, res) => {
         res.status(500).json({ error: 'erro ao buscar pedidos'})
     }
 }
+
