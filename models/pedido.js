@@ -1,6 +1,6 @@
-const { DataTypes } = require('sequelize')
-const sequelize = require('../config/database')
-const Cliente = require('./cliente')
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/database');
+const Cliente = require('./cliente');
 
 const Pedido = sequelize.define('Pedido', {
     id: {
@@ -10,10 +10,13 @@ const Pedido = sequelize.define('Pedido', {
     },
     dataCompra: {
         type: DataTypes.DATE,
-
     },
-    
 });
 
-Pedido.belongsTo(Cliente, { foreignKey: 'clienteId' })
+// Associações
+Pedido.associate = (models) => {
+    Pedido.belongsTo(models.Cliente, { foreignKey: 'clienteId' });
+    Pedido.hasOne(models.DetalhePedido, { foreignKey: 'pedidoId', as: 'detalhe' });
+};
+
 module.exports = Pedido;
