@@ -25,8 +25,9 @@ exports.alterarCliente = async (req, res) => {
     try {
         const { id } = req.params
         const { nome } = req.body
+        const { email } = req.body
         
-        const [updated] = await Cliente.update({ nome }, { where: { id } })
+        const [updated] = await Cliente.update({ nome }, { email }, { where: { id } })
 
         if (updated) {
             const clienteAtualizado = await Cliente.findByPk(id)

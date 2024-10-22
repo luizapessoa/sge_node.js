@@ -32,3 +32,38 @@ exports.todosPedidos = async (req, res) => {
     }
 }
 
+exports.excluirPedido = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const excluir = await Pedido.destroy({ where: {id} })
+
+        if (excluir) {
+            res.status(204).send('funcionando')
+        } else {
+            res.status(404).json({ error: 'pedido nao encontrado' })
+        }
+
+    } catch (error) {
+        res.status(500).json({ error: 'erro ao excluir pedido' })
+    }
+}
+
+exports.alterarPedido = async (req, res) => {
+    try {
+        const { id } = req.params
+        const { dataCompra } = req.body
+        
+        const [updated] = await Pedido.update({ dataCompra }, { where: { id } })
+
+        if (updated) {
+            const pedidoAtualizado = await Pedido.findByPk(id)
+            res.status(200).json(pedidoAtualizado)
+
+        } else {
+            res.status(404).json({ error: 'pedido nao encontrado' })
+        }
+    } catch (error) {
+        res.status(500).json({ error: 'erro ao alterar pedido' })
+    }
+}

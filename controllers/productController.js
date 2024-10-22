@@ -25,8 +25,9 @@ exports.alterarProduto = async (req, res) => {
     try {
         const { id } = req.params
         const { nome } = req.body
+        const { preco } = req.body
         
-        const [updated] = await Produto.update({ nome }, { where: { id } })
+        const [updated] = await Produto.update({ nome }, { preco }, { where: { id } })
 
         if (updated) {
             const produtoAtualizado = await Produto.findByPk(id)
