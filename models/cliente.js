@@ -21,8 +21,7 @@ const Cliente = sequelize.define('Cliente', {
 
 Cliente.associate = models => {
     Cliente.hasMany(models.Pedido,
-        { foreignKey: 'clienteId', as: 'pedidos'
-        }
+        { foreignKey: 'clienteId', as: 'pedidos' }
     )
 }
 

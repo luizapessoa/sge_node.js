@@ -1,31 +1,33 @@
+const express = require('express');
+const router = express.Router();
 const DetalhePedido = require("../models/detalhePedido");
 
 exports.criarDetalhePedido = async (req, res) => {
-    const { pedidoId, produtoId, quantidade, preco, desconto } = req.body;
+    const { pedidoId, quantidade, preco, desconto } = req.body;
 
     try {
         const detalhePedido = await DetalhePedido.create({
-            pedidoId,
-            produtoId,
+            pedidoId, 
             quantidade,
             preco,
             desconto,
         });
 
-        res.status(201).json(detalhePedido); 
+        res.status(201).json(detalhePedido);
     } catch (err) {
-        console.error('Erro ao criar detalhe do pedido:', err);
-        res.status(500).json({ error: 'Erro ao criar detalhe do pedido' });
+        console.error('erro ao criar detalhe do pedido:', err);
+        res.status(500).json({ error: 'erro ao criar detalhe do pedido' });
     }
 };
+
 
 exports.todosDetalhes = async (req, res) => {
     try {
         const detalhes = await DetalhePedido.findAll();
         res.status(200).json(detalhes);
     } catch (error) {
-        console.error('Erro ao buscar detalhes:', error);
-        res.status(500).json({ error: 'Erro ao buscar detalhes' });
+        console.error('erro ao buscar detalhes:', error);
+        res.status(500).json({ error: 'erro ao buscar detalhes' });
     }
 };
 
@@ -38,10 +40,10 @@ exports.excluirDetalhe = async (req, res) => {
         if (excluir) {
             res.status(204).send();
         } else {
-            res.status(404).json({ error: 'Detalhe do pedido não encontrado' });
+            res.status(404).json({ error: 'detalhe do pedido não encontrado' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao excluir detalhe do pedido' });
+        res.status(500).json({ error: 'erro ao excluir detalhe do pedido' });
     }
 };
 
@@ -59,9 +61,9 @@ exports.alterarDetalhe = async (req, res) => {
             const detalheAtualizado = await DetalhePedido.findByPk(id);
             res.status(200).json(detalheAtualizado);
         } else {
-            res.status(404).json({ error: 'Detalhe do pedido não encontrado' });
+            res.status(404).json({ error: 'detalhe do pedido não encontrado' });
         }
     } catch (error) {
-        res.status(500).json({ error: 'Erro ao alterar detalhe do pedido' });
+        res.status(500).json({ error: 'erro ao alterar detalhe do pedido' });
     }
 };

@@ -7,7 +7,7 @@ exports.criarCliente = async (req, res) => {
         res.status(201).json(cliente);
     } catch (error) {
         console.error(error); 
-        res.status(500).json({ error: 'erro ao adiconar cliente' });
+        res.status(500).json({ error: 'erro ao adicionar cliente' });
     }
 }
 

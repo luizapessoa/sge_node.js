@@ -8,7 +8,7 @@ exports.criarPedido = async (req, res) => {
         const cliente = await Cliente.findByPk(clienteId)
 
         if(!cliente) {
-            return res.status(404).json({ message: 'cliente nao encontrado' })
+            return res.status(404).json({ message: 'pedido nao encontrado' })
         }
 
         const novoPedido = await Pedido.create({

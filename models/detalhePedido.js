@@ -1,7 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Pedido = require("./pedido");
-const Produto = require("./produto");
 
 const DetalhePedido = sequelize.define('DetalhePedido', {
     id: {
@@ -20,6 +18,14 @@ const DetalhePedido = sequelize.define('DetalhePedido', {
     desconto: {
         type: DataTypes.FLOAT,
         allowNull: true,
+    },
+    pedidoId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Pedido',
+            key: 'id',
+        },
     },
 });
 

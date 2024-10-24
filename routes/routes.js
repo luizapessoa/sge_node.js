@@ -14,10 +14,10 @@ router.put('/clientes/:id', clienteController.alterarCliente)
 router.delete('/clientes/:id', clienteController.excluirCliente);
 
 // rotas de detalhe 
-router.post('/api/detalhes', detalheController.criarDetalhePedido);
-router.get('/api/detalhes', detalheController.todosDetalhes);
-router.delete('/api/detalhes/:id', detalheController.excluirDetalhe);
-router.put('/api/detalhes/:id', detalheController.alterarDetalhe);
+router.post('/detalhes', detalheController.criarDetalhePedido);
+router.get('/detalhes', detalheController.todosDetalhes);
+router.delete('/detalhes/:id', detalheController.excluirDetalhe);
+router.put('/detalhes/:id', detalheController.alterarDetalhe);
 
 // rotas de pedido
 
